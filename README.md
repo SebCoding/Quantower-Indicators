@@ -1,1 +1,1 @@
-# Seb QT Indicators
+# Custom Seb Quantower Indicators
