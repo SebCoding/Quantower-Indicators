@@ -3,6 +3,7 @@
 using System;
 using System.Drawing;
 using TradingPlatform.BusinessLayer;
+using static System.Collections.Specialized.BitVector32;
 
 namespace ATR_TR
 {
@@ -30,17 +31,22 @@ namespace ATR_TR
         [InputParameter("Print Current ATR on Chart")]
         public bool printATRStringonChart = true;
 
-        [InputParameter("Print ATR x Offset from Top Right")]
-        public int xOffset = 75;
+        [InputParameter("Print Current TR on Chart")]
+        public bool printTRStringonChart = true;
 
-        [InputParameter("Print ATR y Offset from Top Right")]
+        [InputParameter("Print ATR/TR x Offset from Top Right")]
+        public int xOffset = 120;
+
+        [InputParameter("Print ATR/TR y Offset from Top Right")]
         public int yOffset = 20;
 
-        [InputParameter("ATR Font Color")]
+        [InputParameter("ATR/TR Font Color")]
         public Color atrFontColor = Color.Turquoise;
 
-        [InputParameter("ATR Font Size")]
+        [InputParameter("ATR/TR Font Size")]
         public int atrFontSize = 10;
+
+        // Print TR Text on Chart
 
 
         /// <summary>
@@ -59,6 +65,8 @@ namespace ATR_TR
 
             // By default indicator will be applied on main window of the chart
             SeparateWindow = true;
+
+            UpdateType = IndicatorUpdateType.OnTick;
 
             Digits = 2;
         }
@@ -119,22 +127,28 @@ namespace ATR_TR
 
         }
 
-        public void PrintATRonChart(PaintChartEventArgs args)
-        {
-            
-        }
-
         public override void OnPaintChart(PaintChartEventArgs args)
         {
             base.OnPaintChart(args);
 
-            if ((this.CurrentChart != null) && printATRStringonChart)
+            if (this.CurrentChart == null)
+                return;
+
+            if (printATRStringonChart || printTRStringonChart)
             {
+                // ATR
                 double atr = 0.0;
                 if (ATRinTicks)
                     atr = Math.Round(BuiltInATR.GetValue() / Symbol.TickSize, 2);
                 else
                     atr = Math.Round(BuiltInATR.GetValue(), 2);
+
+                // TR
+                double tr = High() - Low();
+                if (TRinTicks)
+                    tr = Math.Round(tr / Symbol.TickSize, 2);
+                else
+                    tr = Math.Round(tr, 2);
 
                 Graphics graphics = args.Graphics;
 
@@ -146,13 +160,21 @@ namespace ATR_TR
                 };
 
                 var mainWindow = this.CurrentChart.MainWindow;
-                Font font = new Font("Arial", atrFontSize, FontStyle.Regular);
+                Font font = new Font("Consolas", atrFontSize, FontStyle.Regular);
 
                 int textXCoord = mainWindow.ClientRectangle.Width - xOffset;
                 int textYCoord = yOffset; // mainWindow.ClientRectangle.Height - 100;
                 Brush brush = new SolidBrush(atrFontColor);
 
-                graphics.DrawString("ATR: " + atr, font, brush, textXCoord, textYCoord, stringFormat);
+                string str = "";
+                if (printATRStringonChart)
+                    str = "ATR: " + atr;
+                if (printTRStringonChart)
+                    str += "\nBar: " + tr;
+
+                graphics.DrawString(str, font, brush, textXCoord, textYCoord);
+
+                //Core.Instance.Loggers.Log($"Printing ATR: {atr} now.");
             }
 
         }
