@@ -15,19 +15,32 @@ namespace ATR_TR
     {
         private Indicator BuiltInATR;
 
-        [InputParameter("Ticks per Point for this Symbol")]
-        public int TicksPerPoint = 4;
+        //[InputParameter("Ticks per Point for this Symbol")]
+        //public double TicksPerPoint = 4;
 
-        [InputParameter("ATR in Ticks")]
+        [InputParameter("Calculate True Range (TR) in Ticks")]
+        public bool TRinTicks = true;
+
+        [InputParameter("Calculate ATR in Ticks")]
         public bool ATRinTicks = true;
 
         [InputParameter("ATR Period")]
         public int ATR_Period = 14;
 
-        [InputParameter("True Range in Ticks")]
-        public bool TRinTicks = true;
+        [InputParameter("Print Current ATR on Chart")]
+        public bool printATRStringonChart = true;
 
+        [InputParameter("Print ATR x Offset from Top Right")]
+        public int xOffset = 75;
 
+        [InputParameter("Print ATR y Offset from Top Right")]
+        public int yOffset = 20;
+
+        [InputParameter("ATR Font Color")]
+        public Color atrFontColor = Color.Turquoise;
+
+        [InputParameter("ATR Font Size")]
+        public int atrFontSize = 10;
 
 
         /// <summary>
@@ -45,7 +58,9 @@ namespace ATR_TR
             AddLineSeries("TR", Color.Crimson, 1, LineStyle.Solid);
 
             // By default indicator will be applied on main window of the chart
-            SeparateWindow = false;
+            SeparateWindow = true;
+
+            Digits = 2;
         }
 
         /// <summary>
@@ -54,10 +69,10 @@ namespace ATR_TR
         protected override void OnInit()
         {
             // Add your initialization code here
-            BuiltInATR = Core.Indicators.BuiltIn.ATR(ATR_Period, MaMode.SMA);
+            this.BuiltInATR = Core.Indicators.BuiltIn.ATR(ATR_Period, MaMode.SMA);
 
             // Add created ATR indicator as a child to our script
-            AddIndicator(BuiltInATR);
+            AddIndicator(this.BuiltInATR);
         }
 
         /// <summary>
@@ -87,23 +102,59 @@ namespace ATR_TR
             // SetValue(1.43, 1);                           // To set value for second line of the indicator
             // SetValue(1.43, 1, 5);                        // To set value for fifth bar before the current for second line of the indicator
 
-
-            if (TicksPerPoint <= 0) return;
-
+            
 
             // ATR
             if (ATRinTicks)
-                SetValue(Math.Round(BuiltInATR.GetValue()*TicksPerPoint, 2), 0);
-            else 
-                SetValue(Math.Round(BuiltInATR.GetValue(), 2), 0);
+                this.SetValue(Math.Round(BuiltInATR.GetValue() / Symbol.TickSize, 2), 0);
+            else
+                this.SetValue(Math.Round(BuiltInATR.GetValue(), 2), 0);
 
             // True Range
             double range = this.High() - this.Low();
             if (TRinTicks)
-                SetValue(Math.Round(range * TicksPerPoint, 2), 1);
+                this.SetValue(Math.Round(range / Symbol.TickSize, 2), 1);
             else
                 SetValue(Math.Round(BuiltInATR.GetValue(), 2), 1);
-        
+
+        }
+
+        public void PrintATRonChart(PaintChartEventArgs args)
+        {
+            
+        }
+
+        public override void OnPaintChart(PaintChartEventArgs args)
+        {
+            base.OnPaintChart(args);
+
+            if ((this.CurrentChart != null) && printATRStringonChart)
+            {
+                double atr = 0.0;
+                if (ATRinTicks)
+                    atr = Math.Round(BuiltInATR.GetValue() / Symbol.TickSize, 2);
+                else
+                    atr = Math.Round(BuiltInATR.GetValue(), 2);
+
+                Graphics graphics = args.Graphics;
+
+                // Use StringFormat class to center text
+                StringFormat stringFormat = new StringFormat()
+                {
+                    LineAlignment = StringAlignment.Center,
+                    Alignment = StringAlignment.Center
+                };
+
+                var mainWindow = this.CurrentChart.MainWindow;
+                Font font = new Font("Arial", atrFontSize, FontStyle.Regular);
+
+                int textXCoord = mainWindow.ClientRectangle.Width - xOffset;
+                int textYCoord = yOffset; // mainWindow.ClientRectangle.Height - 100;
+                Brush brush = new SolidBrush(atrFontColor);
+
+                graphics.DrawString("ATR: " + atr, font, brush, textXCoord, textYCoord, stringFormat);
+            }
+
         }
     }
 }
