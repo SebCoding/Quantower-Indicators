@@ -46,8 +46,6 @@ namespace ATR_TR
         [InputParameter("ATR/TR Font Size")]
         public int atrFontSize = 10;
 
-        // Print TR Text on Chart
-
 
         /// <summary>
         /// Indicator's constructor. Contains general information: name, description, LineSeries etc. 
@@ -137,18 +135,16 @@ namespace ATR_TR
             if (printATRStringonChart || printTRStringonChart)
             {
                 // ATR
-                double atr = 0.0;
+                double atr = BuiltInATR.GetValue();
                 if (ATRinTicks)
-                    atr = Math.Round(BuiltInATR.GetValue() / Symbol.TickSize, 2);
-                else
-                    atr = Math.Round(BuiltInATR.GetValue(), 2);
+                    atr = atr / Symbol.TickSize;
+                string atr_str = atr.ToString("F2");
 
                 // TR
                 double tr = High() - Low();
                 if (TRinTicks)
-                    tr = Math.Round(tr / Symbol.TickSize, 2);
-                else
-                    tr = Math.Round(tr, 2);
+                    tr = tr / Symbol.TickSize;
+                string tr_str = tr.ToString("F2");
 
                 Graphics graphics = args.Graphics;
 
@@ -168,9 +164,9 @@ namespace ATR_TR
 
                 string str = "";
                 if (printATRStringonChart)
-                    str = "ATR: " + atr;
+                    str = "ATR: " + atr_str;
                 if (printTRStringonChart)
-                    str += "\nBar: " + tr;
+                    str += "\nBar: " + tr_str;
 
                 graphics.DrawString(str, font, brush, textXCoord, textYCoord);
 
