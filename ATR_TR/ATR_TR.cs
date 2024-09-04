@@ -1,4 +1,13 @@
-// Copyright QUANTOWER LLC. © 2017-2023. All rights reserved.
+
+// Quantower Custom Indicator.
+//
+// Combines Average True Range (ATR) and True Range (TR) into a single indicator.
+// Offers the ability to calculate the ATR and/or the TR in Points or Ticks.
+// Also allows to print on top left of the chart current values for ATR and TR for the ongoing unclosed bar.
+//
+// Indicator created by Sebastien Vezina.
+// Github User: SebCoding
+// September 2024
 
 using System;
 using System.Drawing;
