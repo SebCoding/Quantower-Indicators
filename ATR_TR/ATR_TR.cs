@@ -2,7 +2,7 @@
 // Quantower Custom Indicator.
 //
 // Combines Average True Range (ATR) and True Range (TR) into a single indicator.
-// Offers the ability to calculate the ATR and/or the TR in Points or Ticks.
+// Offers the ability to calculate the ATR and/or the TR in points or ticks.
 // Also allows to print on top left of the chart current values for ATR and TR for the ongoing unclosed bar.
 //
 // Indicator created by Sebastien Vezina.
@@ -41,10 +41,10 @@ namespace ATR_TR
         public bool printATRStringonChart = true;
 
         [InputParameter("Print Current TR on Chart")]
-        public bool printTRStringonChart = true;
+        public bool printTRStringOnChart = true;
 
         [InputParameter("Print ATR/TR x Offset from Top Right")]
-        public int xOffset = 120;
+        public int xOffset = 150;
 
         [InputParameter("Print ATR/TR y Offset from Top Right")]
         public int yOffset = 20;
@@ -54,6 +54,9 @@ namespace ATR_TR
 
         [InputParameter("ATR/TR Font Size")]
         public int atrFontSize = 10;
+
+        [InputParameter("Print Previous Bar TR on Chart")]
+        public bool printPrevTRStringOnChart = true;
 
 
         /// <summary>
@@ -142,29 +145,47 @@ namespace ATR_TR
             if (this.CurrentChart == null)
                 return;
 
-            if (printATRStringonChart || printTRStringonChart)
+            if (printATRStringonChart || printTRStringOnChart || printPrevTRStringOnChart)
             {
                 Graphics graphics = args.Graphics;
                 var mainWindow = this.CurrentChart.MainWindow;
 
                 // ATR
                 double atr = BuiltInATR.GetValue();
-                if (ATRinTicks)
-                    atr = atr / Symbol.TickSize;
+                if (ATRinTicks)        
+                    atr = atr / Symbol.TickSize;                
                 string atr_str = atr.ToString("F2");
 
+                // Previous TR
+                string prev_tr_str = "";
+                double prev_tr = High(1) - Low(1);
+                if (TRinTicks)
+                {
+                    prev_tr = prev_tr / Symbol.TickSize;
+                    prev_tr_str = prev_tr.ToString("F0"); // + " ticks";
+                }
+                else
+                    prev_tr_str = prev_tr.ToString("F2");
+
                 // TR
+                string tr_str = "";
                 double tr = High() - Low();
                 if (TRinTicks)
+                {
                     tr = tr / Symbol.TickSize;
-                string tr_str = tr.ToString("F2");
+                    tr_str = tr.ToString("F0"); // + " ticks";
+                }
+                else
+                    tr_str = tr.ToString("F2");
 
                 // Output Text to print on Chart
                 string str = "";
                 if (printATRStringonChart)
-                    str = "ATR: " + atr_str + "\n";
-                if (printTRStringonChart)
-                    str += "Bar: " + tr_str;
+                    str = "ATR: " + atr_str;
+                if ((printPrevTRStringOnChart))
+                    str += "\nPrev Bar: " + prev_tr_str;
+                if (printTRStringOnChart)
+                    str += "\nCurr Bar: " + tr_str;
 
 
                 Font font = new Font("Consolas", atrFontSize, FontStyle.Regular);
