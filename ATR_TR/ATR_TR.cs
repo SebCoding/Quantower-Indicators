@@ -55,17 +55,19 @@ namespace ATR_TR
         {
             // Defines indicator's name and description.
             Name = "ATR_TR";
-            Description = "Customized ATR and Tru Range Indicator";
+            Description = "Customized ATR and True Range Indicator";
 
             // Defines line on demand with particular parameters.
             AddLineSeries("ATR", Color.CadetBlue, 1, LineStyle.Solid);
             AddLineSeries("TR", Color.Crimson, 1, LineStyle.Solid);
 
-            // By default indicator will be applied on main window of the chart
+            // By default indicator will be applied on separate window at the bottom of the chart
             SeparateWindow = true;
 
+            // We use OnTick because we also want ATR/TR on current unclosed bar
             UpdateType = IndicatorUpdateType.OnTick;
 
+            // We only need 2 digits for our calculated values
             Digits = 2;
         }
 
@@ -108,21 +110,20 @@ namespace ATR_TR
             // SetValue(1.43, 1);                           // To set value for second line of the indicator
             // SetValue(1.43, 1, 5);                        // To set value for fifth bar before the current for second line of the indicator
 
-            
 
             // ATR
+            double atr = BuiltInATR.GetValue();
             if (ATRinTicks)
-                this.SetValue(Math.Round(BuiltInATR.GetValue() / Symbol.TickSize, 2), 0);
+                this.SetValue(atr/ Symbol.TickSize, 0);
             else
-                this.SetValue(Math.Round(BuiltInATR.GetValue(), 2), 0);
+                this.SetValue(atr, 0);
 
             // True Range
             double range = this.High() - this.Low();
             if (TRinTicks)
-                this.SetValue(Math.Round(range / Symbol.TickSize, 2), 1);
+                this.SetValue(range / Symbol.TickSize, 1);
             else
-                SetValue(Math.Round(BuiltInATR.GetValue(), 2), 1);
-
+                SetValue(range, 1);
         }
 
         public override void OnPaintChart(PaintChartEventArgs args)
@@ -134,6 +135,9 @@ namespace ATR_TR
 
             if (printATRStringonChart || printTRStringonChart)
             {
+                Graphics graphics = args.Graphics;
+                var mainWindow = this.CurrentChart.MainWindow;
+
                 // ATR
                 double atr = BuiltInATR.GetValue();
                 if (ATRinTicks)
@@ -146,30 +150,30 @@ namespace ATR_TR
                     tr = tr / Symbol.TickSize;
                 string tr_str = tr.ToString("F2");
 
-                Graphics graphics = args.Graphics;
+                // Output Text to print on Chart
+                string str = "";
+                if (printATRStringonChart)
+                    str = "ATR: " + atr_str + "\n";
+                if (printTRStringonChart)
+                    str += "Bar: " + tr_str;
 
-                // Use StringFormat class to center text
-                StringFormat stringFormat = new StringFormat()
-                {
-                    LineAlignment = StringAlignment.Center,
-                    Alignment = StringAlignment.Center
-                };
 
-                var mainWindow = this.CurrentChart.MainWindow;
                 Font font = new Font("Consolas", atrFontSize, FontStyle.Regular);
-
                 int textXCoord = mainWindow.ClientRectangle.Width - xOffset;
                 int textYCoord = yOffset; // mainWindow.ClientRectangle.Height - 100;
                 Brush brush = new SolidBrush(atrFontColor);
 
-                string str = "";
-                if (printATRStringonChart)
-                    str = "ATR: " + atr_str;
-                if (printTRStringonChart)
-                    str += "\nBar: " + tr_str;
-
                 graphics.DrawString(str, font, brush, textXCoord, textYCoord);
 
+                // Use StringFormat class to center text
+                //StringFormat stringFormat = new StringFormat()
+                //{
+                //    LineAlignment = StringAlignment.Center,
+                //    Alignment = StringAlignment.Center
+                //};
+                //graphics.DrawString(str, font, brush, textXCoord, textYCoord, stringFormat);
+
+                // Print to log for debugging
                 //Core.Instance.Loggers.Log($"Printing ATR: {atr} now.");
             }
 
