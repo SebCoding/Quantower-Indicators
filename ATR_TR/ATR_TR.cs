@@ -44,19 +44,26 @@ namespace ATR_TR
         public bool printTRStringOnChart = true;
 
         [InputParameter("Print ATR/TR x Offset from Top Right")]
-        public int xOffset = 150;
+        public int xOffset = 230;
 
         [InputParameter("Print ATR/TR y Offset from Top Right")]
         public int yOffset = 20;
 
         [InputParameter("ATR/TR Font Color")]
-        public Color atrFontColor = Color.Turquoise;
+        public Color atrFontColor = Color.LightGray;
 
         [InputParameter("ATR/TR Font Size")]
         public int atrFontSize = 10;
 
         [InputParameter("Print Previous Bar TR on Chart")]
         public bool printPrevTRStringOnChart = true;
+
+        // Risk Calculator
+        [InputParameter("Print Risk Calculation")]
+        public bool printRiskCalculation = true;
+
+        [InputParameter("Maximum Risk per Trade in $")]
+        public double maxRisk = 75.00;
 
 
         /// <summary>
@@ -145,67 +152,112 @@ namespace ATR_TR
             if (this.CurrentChart == null)
                 return;
 
-            if (printATRStringonChart || printTRStringOnChart || printPrevTRStringOnChart)
+            if (!printATRStringonChart && !printTRStringOnChart && !printPrevTRStringOnChart && !printRiskCalculation)
+                return;
+
+            Graphics graphics = args.Graphics;
+            var mainWindow = this.CurrentChart.MainWindow;
+
+            int padding = 15;
+
+            double tickCost = Symbol.GetTickCost(1);
+
+            // ATR
+            string atr_str;
+            double atr = BuiltInATR.GetValue();
+            double nbContractsATR = (atr > 0) ? maxRisk / tickCost / atr * Symbol.TickSize: 0;
+            if (ATRinTicks)
             {
-                Graphics graphics = args.Graphics;
-                var mainWindow = this.CurrentChart.MainWindow;
-
-                // ATR
-                double atr = BuiltInATR.GetValue();
-                if (ATRinTicks)        
-                    atr = atr / Symbol.TickSize;                
-                string atr_str = atr.ToString("F2");
-
-                // Previous TR
-                string prev_tr_str = "";
-                double prev_tr = High(1) - Low(1);
-                if (TRinTicks)
-                {
-                    prev_tr = prev_tr / Symbol.TickSize;
-                    prev_tr_str = prev_tr.ToString("F0"); // + " ticks";
-                }
-                else
-                    prev_tr_str = prev_tr.ToString("F2");
-
-                // TR
-                string tr_str = "";
-                double tr = High() - Low();
-                if (TRinTicks)
-                {
-                    tr = tr / Symbol.TickSize;
-                    tr_str = tr.ToString("F0"); // + " ticks";
-                }
-                else
-                    tr_str = tr.ToString("F2");
-
-                // Output Text to print on Chart
-                string str = "";
-                if (printATRStringonChart)
-                    str = "ATR: " + atr_str;
-                if ((printPrevTRStringOnChart))
-                    str += "\nPrev Bar: " + prev_tr_str;
-                if (printTRStringOnChart)
-                    str += "\nCurr Bar: " + tr_str;
-
-
-                Font font = new Font("Consolas", atrFontSize, FontStyle.Regular);
-                int textXCoord = mainWindow.ClientRectangle.Width - xOffset;
-                int textYCoord = yOffset; // mainWindow.ClientRectangle.Height - 100;
-                Brush brush = new SolidBrush(atrFontColor);
-
-                graphics.DrawString(str, font, brush, textXCoord, textYCoord);
-
-                // Use StringFormat class to center text
-                //StringFormat stringFormat = new StringFormat()
-                //{
-                //    LineAlignment = StringAlignment.Center,
-                //    Alignment = StringAlignment.Center
-                //};
-                //graphics.DrawString(str, font, brush, textXCoord, textYCoord, stringFormat);
-
-                // Print to log for debugging
-                //Core.Instance.Loggers.Log($"Printing ATR: {atr} now.");
+                atr = atr / Symbol.TickSize;
+                atr_str = "Average: " + atr.ToString("F1");
             }
+            else
+                atr_str = "Average: " + atr.ToString("F2");
+            atr_str = atr_str.PadRight(padding);
+
+            // Previous Bar TR75
+            string prev_tr_str;
+            double prev_tr = High(1) - Low(1);
+            double nbContractsPrevTR = (prev_tr > 0) ? maxRisk / tickCost / prev_tr * Symbol.TickSize: 0;
+            if (TRinTicks)
+            {
+                prev_tr = prev_tr / Symbol.TickSize;
+                prev_tr_str = "Previous: " + prev_tr.ToString("F0");
+            }
+            else
+                prev_tr_str = "Previous: " + prev_tr.ToString("F2");
+            prev_tr_str = prev_tr_str.PadRight(padding);
+
+            // Current Bar TR
+            string tr_str;
+            double tr = High() - Low();
+            double nbContractsTR = (tr > 0) ? maxRisk / tickCost / tr * Symbol.TickSize: 0;
+            if (TRinTicks)
+            {
+                tr = tr / Symbol.TickSize;
+                tr_str = "Current: " + tr.ToString("F0");
+            }
+            else
+                tr_str = "Current: " + tr.ToString("F2");
+            tr_str = tr_str.PadRight(padding);
+
+
+            // Output Text to print on Chart
+            string str = "Bar Size".PadRight(padding);
+            if (printRiskCalculation)
+                str += "  Max Pos.";
+            str += "\n";
+
+            if (printATRStringonChart) 
+            { 
+                str += atr_str;
+                if (printRiskCalculation)
+                    str += "|  " + nbContractsATR.ToString("F1");
+                str += "\n";
+            }
+
+            if (printPrevTRStringOnChart)
+            {
+                str += prev_tr_str;
+                if (printRiskCalculation)
+                    str += "|  " + nbContractsPrevTR.ToString("F1");
+                str += "\n";
+            }
+
+            if (printTRStringOnChart)
+            {
+                str += tr_str;
+                if (printRiskCalculation)
+                    str += "|  " + nbContractsTR.ToString("F1");
+                str += "\n";
+            }
+
+            //if (printRiskCalculation)
+            //{
+            //    str += "\nMax Pos Size:\n";
+            //    str += "ATR: " + nbContractsATR.ToString("F1") + "\n";
+            //    str += "Prev TR: " + nbContractsPrevTR.ToString("F1") + "\n";
+            //    str += "Curr TR: " + nbContractsTR.ToString("F1") + "\n";
+            //}
+
+
+            Font font = new Font("Consolas", atrFontSize, FontStyle.Regular);
+            int textXCoord = mainWindow.ClientRectangle.Width - xOffset;
+            int textYCoord = yOffset; // mainWindow.ClientRectangle.Height - 100;
+            Brush brush = new SolidBrush(atrFontColor);
+
+            graphics.DrawString(str, font, brush, textXCoord, textYCoord);
+
+            // Use StringFormat class to center text
+            //StringFormat stringFormat = new StringFormat()
+            //{
+            //    LineAlignment = StringAlignment.Center,
+            //    Alignment = StringAlignment.Center
+            //};
+            //graphics.DrawString(str, font, brush, textXCoord, textYCoord, stringFormat);
+
+            // Print to log for debugging
+            //Core.Instance.Loggers.Log($"Printing ATR: {atr} now.");
 
         }
     }
