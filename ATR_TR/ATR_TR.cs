@@ -47,7 +47,7 @@ namespace ATR_TR
         public int xOffset = 230;
 
         [InputParameter("Print ATR/TR y Offset from Top Right")]
-        public int yOffset = 20;
+        public int yOffset = 10;
 
         [InputParameter("ATR/TR Font Color")]
         public Color atrFontColor = Color.LightGray;
@@ -64,6 +64,9 @@ namespace ATR_TR
 
         [InputParameter("Maximum Risk per Trade in $")]
         public double maxRisk = 75.00;
+
+        [InputParameter("Select X. Risk = SignalBar + X Ticks")]
+        public int riskAddTicks = 2;
 
 
         /// <summary>
@@ -160,12 +163,14 @@ namespace ATR_TR
 
             int padding = 15;
 
+            double riskInTicks;
             double tickCost = Symbol.GetTickCost(1);
 
             // ATR
             string atr_str;
             double atr = BuiltInATR.GetValue();
-            double nbContractsATR = (atr > 0) ? maxRisk / tickCost / atr * Symbol.TickSize: 0;
+            riskInTicks = (atr / Symbol.TickSize) + riskAddTicks;
+            double nbContractsATR = (atr > 0) ? (maxRisk / (riskInTicks * tickCost)): 0;
             if (ATRinTicks)
             {
                 atr = atr / Symbol.TickSize;
@@ -178,7 +183,8 @@ namespace ATR_TR
             // Previous Bar TR75
             string prev_tr_str;
             double prev_tr = High(1) - Low(1);
-            double nbContractsPrevTR = (prev_tr > 0) ? maxRisk / tickCost / prev_tr * Symbol.TickSize: 0;
+            riskInTicks = (prev_tr / Symbol.TickSize) + riskAddTicks;
+            double nbContractsPrevTR = (prev_tr > 0) ? (maxRisk / (riskInTicks * tickCost)): 0;
             if (TRinTicks)
             {
                 prev_tr = prev_tr / Symbol.TickSize;
@@ -191,7 +197,8 @@ namespace ATR_TR
             // Current Bar TR
             string tr_str;
             double tr = High() - Low();
-            double nbContractsTR = (tr > 0) ? maxRisk / tickCost / tr * Symbol.TickSize: 0;
+            riskInTicks = (tr / Symbol.TickSize) + riskAddTicks;
+            double nbContractsTR = (tr > 0) ? (maxRisk / (riskInTicks * tickCost)): 0;
             if (TRinTicks)
             {
                 tr = tr / Symbol.TickSize;
@@ -205,7 +212,7 @@ namespace ATR_TR
             // Output Text to print on Chart
             string str = "Bar Size".PadRight(padding);
             if (printRiskCalculation)
-                str += "  Max Pos.";
+                str += $"  Max Pos ${maxRisk}";
             str += "\n";
 
             if (printATRStringonChart) 
