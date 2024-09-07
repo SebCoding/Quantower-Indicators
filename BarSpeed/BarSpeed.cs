@@ -162,10 +162,20 @@ namespace BarSpeed
 
             // Get Bars in the Time Span
             Symbol symbol = Core.Instance.Symbols.FirstOrDefault();
-            HistoricalData historicalData = symbol.GetHistory(Period.TICK1, HistoryType.Last, currentBarDateTime.AddMinutes(-TimeRangeInMinutes), currentBarDateTime);
+            //HistoricalData historicalData = symbol.GetHistory(Period.TICK1, HistoryType.Last, currentBarDateTime.AddMinutes(-TimeRangeInMinutes), currentBarDateTime);
+
+            var tickhistoricalData = this.Symbol.GetHistory(new HistoryRequestParameters()
+            {
+                Symbol = this.Symbol,
+                FromTime = currentBarDateTime.AddDays(-5),
+                ToTime = currentBarDateTime,
+                HistoryType = HistoryType.Last,
+                Aggregation = HistoricalData.Aggregation,
+                ForceReload = false
+            });
 
             double nbSecs = TimeRangeInMinutes * 60;
-            double nbBars = historicalData.Count;
+            double nbBars = tickhistoricalData.Count;
 
             // Bars Per Minute (BPM)
             double bpm = Math.Round(nbBars / (double)TimeRangeInMinutes, 1);
@@ -195,9 +205,11 @@ namespace BarSpeed
 
             graphics.DrawString(message, font, brush, textXCoord, textYCoord);
 
-            graphics.DrawString(currentBarDateTime.ToString(), font, Brushes.Yellow, textXCoord, textYCoord+50);
+            graphics.DrawString($"currentBarDateTime: {currentBarDateTime.ToString()}", font, Brushes.Yellow, textXCoord, textYCoord+50);
 
             graphics.DrawString($"Symbol: {symbol}", font, Brushes.Yellow, textXCoord, textYCoord+100);
+
+            graphics.DrawString($"nbBars: {nbBars}", font, Brushes.Yellow, textXCoord, textYCoord + 150);
 
         }
     }

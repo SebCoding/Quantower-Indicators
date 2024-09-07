@@ -7,9 +7,6 @@
       "RelativeMoniker": "D:0:0:{B91C2422-2CAB-4A53-AAAC-B7EFA7DF7893}|BarSpeed\\BarSpeed.csproj|solutionrelative:barspeed\\barspeed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|K:\\_Trading\\NinjaTrader\\Indicators\\NinjaTraderIndicators\\SebIndicators\\Indicators\\SebIndicators\\BarSpeed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|K:\\_Trading\\Quantower\\Examples-master\\Common\\HistoryExamples.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,32 +17,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "HistoryExamples.cs",
               "DocumentMoniker": "K:\\_Trading\\Quantower\\Examples-master\\Common\\HistoryExamples.cs",
               "RelativeDocumentMoniker": "..\\Examples-master\\Common\\HistoryExamples.cs",
               "ToolTip": "K:\\_Trading\\Quantower\\Examples-master\\Common\\HistoryExamples.cs",
               "RelativeToolTip": "..\\Examples-master\\Common\\HistoryExamples.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-07T13:52:57.908Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BarSpeed.cs",
-              "DocumentMoniker": "K:\\_Trading\\NinjaTrader\\Indicators\\NinjaTraderIndicators\\SebIndicators\\Indicators\\SebIndicators\\BarSpeed.cs",
-              "RelativeDocumentMoniker": "..\\..\\NinjaTrader\\Indicators\\NinjaTraderIndicators\\SebIndicators\\Indicators\\SebIndicators\\BarSpeed.cs",
-              "ToolTip": "K:\\_Trading\\NinjaTrader\\Indicators\\NinjaTraderIndicators\\SebIndicators\\Indicators\\SebIndicators\\BarSpeed.cs",
-              "RelativeToolTip": "..\\..\\NinjaTrader\\Indicators\\NinjaTraderIndicators\\SebIndicators\\Indicators\\SebIndicators\\BarSpeed.cs",
-              "ViewState": "AQIAAGQAAAAAAAAAAAAAAIwAAABoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T11:56:01.444Z",
               "EditorCaption": ""
             },
             {
@@ -54,9 +38,9 @@
               "Title": "BarSpeed.cs",
               "DocumentMoniker": "K:\\_Trading\\Quantower\\Seb QT Indicators\\BarSpeed\\BarSpeed.cs",
               "RelativeDocumentMoniker": "BarSpeed\\BarSpeed.cs",
-              "ToolTip": "K:\\_Trading\\Quantower\\Seb QT Indicators\\BarSpeed\\BarSpeed.cs",
-              "RelativeToolTip": "BarSpeed\\BarSpeed.cs",
-              "ViewState": "AQIAAJgAAAAAAAAAAAAcwKIAAAAoAAAA",
+              "ToolTip": "K:\\_Trading\\Quantower\\Seb QT Indicators\\BarSpeed\\BarSpeed.cs*",
+              "RelativeToolTip": "BarSpeed\\BarSpeed.cs*",
+              "ViewState": "AQIAAKoAAAAAAAAAAAAcwMwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-07T11:51:04.676Z",
               "EditorCaption": ""
