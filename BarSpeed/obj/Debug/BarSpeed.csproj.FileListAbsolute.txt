@@ -1,0 +1,14 @@
+K:\_Trading\Quantower\Nitro\Nitro\Settings\Scripts\Indicators\BarSpeed\BarSpeed.deps.json
+K:\_Trading\Quantower\Nitro\Nitro\Settings\Scripts\Indicators\BarSpeed\BarSpeed.dll
+K:\_Trading\Quantower\Nitro\Nitro\Settings\Scripts\Indicators\BarSpeed\BarSpeed.pdb
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\BarSpeed.csproj.AssemblyReference.cache
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\BarSpeed.GeneratedMSBuildEditorConfig.editorconfig
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\BarSpeed.AssemblyInfoInputs.cache
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\BarSpeed.AssemblyInfo.cs
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\BarSpeed.csproj.CoreCompileInputs.cache
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\BarSpeed.sourcelink.json
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\BarSpeed.dll
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\refint\BarSpeed.dll
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\BarSpeed.pdb
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\ref\BarSpeed.dll
+K:\_Trading\Quantower\Seb QT Indicators\BarSpeed\obj\Debug\BarSpeed.csproj.Up2Date

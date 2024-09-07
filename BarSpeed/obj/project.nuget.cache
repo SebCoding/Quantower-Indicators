@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "pnoyVxWK8TU=",
+  "success": true,
+  "projectFilePath": "K:\\_Trading\\Quantower\\Seb QT Indicators\\BarSpeed\\BarSpeed.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Seb\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\Seb\\.nuget\\packages\\system.drawing.common\\8.0.8\\system.drawing.common.8.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}

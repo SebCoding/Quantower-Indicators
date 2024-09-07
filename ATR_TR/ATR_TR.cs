@@ -38,34 +38,34 @@ namespace ATR_TR
         public int ATR_Period = 14;
 
         [InputParameter("Print Current ATR on Chart")]
-        public bool printATRStringonChart = true;
+        public bool printATRStringOnChart = true;
+
+        [InputParameter("Print Previous Bar TR on Chart")]
+        public bool printPrevTRStringOnChart = true;
 
         [InputParameter("Print Current TR on Chart")]
         public bool printTRStringOnChart = true;
 
-        [InputParameter("Print ATR/TR x Offset from Top Right", minimum: 0)]
+        [InputParameter("X Offset from Top Right", minimum: 0)]
         public int xOffset = 230;
 
-        [InputParameter("Print ATR/TR y Offset from Top Right", minimum: 0)]
+        [InputParameter("Y Offset from Top Right", minimum: 0)]
         public int yOffset = 10;
 
-        [InputParameter("ATR/TR Font Color")]
-        public Color atrFontColor = Color.LightGray;
+        [InputParameter("Font Color")]
+        public Color fontColor = Color.LightGray;
 
-        [InputParameter("ATR/TR Font Size", minimum: 6, maximum: 36)]
+        [InputParameter("Font Size", minimum: 6, maximum: 36)]
         public int fontSize = 10;
-
-        [InputParameter("Print Previous Bar TR on Chart")]
-        public bool printPrevTRStringOnChart = true;
 
         // Risk Calculator
         [InputParameter("Print Risk Calculation")]
         public bool printRiskCalculation = true;
 
-        [InputParameter("Maximum Risk per Trade in $", minimum: 0, maximum: 1000000, increment: 1, decimalPlaces: 0)]
+        [InputParameter("Maximum $ Risk per Trade", minimum: 0, maximum: 1000000, increment: 1, decimalPlaces: 0)]
         public double maxRisk = 75;
 
-        [InputParameter("Select X. Risk = SignalBar + X Ticks", minimum: 0)]
+        [InputParameter("Additional ticks to add to the signal bar", minimum: 0)]
         public int riskAddTicks = 2;
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace ATR_TR
             if (this.CurrentChart == null)
                 return;
 
-            if (!printATRStringonChart && !printTRStringOnChart && !printPrevTRStringOnChart && !printRiskCalculation)
+            if (!printATRStringOnChart && !printTRStringOnChart && !printPrevTRStringOnChart)
                 return;
 
             Graphics graphics = args.Graphics;
@@ -173,10 +173,10 @@ namespace ATR_TR
             if (ATRinTicks)
             {
                 atr = atr / Symbol.TickSize;
-                atr_str = "Average: " + atr.ToString("F1");
+                atr_str = $"ATR[{ATR_Period}]: " + atr.ToString("F1");
             }
             else
-                atr_str = "Average: " + atr.ToString("F2");
+                atr_str = $"ATR[{ATR_Period}]: " + atr.ToString("F2");
             atr_str = atr_str.PadRight(padding);
 
             // Previous Bar TR75
@@ -209,12 +209,13 @@ namespace ATR_TR
 
 
             // Create text to be printed on chart
-            string str = "Bar Size".PadRight(padding);
+            string str = "BarSize".PadRight(padding);
             if (printRiskCalculation)
                 str += $"  Risk ${maxRisk}";
             str += "\n";
+            //str += "".PadRight(str.Length-1, '-') + "\n";
 
-            if (printATRStringonChart) 
+            if (printATRStringOnChart) 
             { 
                 str += atr_str;
                 if (printRiskCalculation)
@@ -249,7 +250,7 @@ namespace ATR_TR
             Font font = new Font("Consolas", fontSize, FontStyle.Regular);
             int textXCoord = mainWindow.ClientRectangle.Width - xOffset;
             int textYCoord = yOffset; // mainWindow.ClientRectangle.Height - 100;
-            Brush brush = new SolidBrush(atrFontColor);
+            Brush brush = new SolidBrush(fontColor);
 
             graphics.DrawString(str, font, brush, textXCoord, textYCoord);
 
