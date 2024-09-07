@@ -5,6 +5,9 @@
 // Offers the ability to calculate the ATR and/or the TR in points or ticks.
 // Also allows to print on top left of the chart current values for ATR and TR for the ongoing unclosed bar.
 //
+// When Risk Calculation is enabled, it also calculates and prints the maximum number of contracts that should
+// be used based on the max $ risk per trade and the size of the ATR, TR or signal bar + x ticks above and/or below
+//
 // Indicator created by Sebastien Vezina.
 // Github User: SebCoding
 // September 2024
@@ -25,16 +28,13 @@ namespace ATR_TR
     {
         private Indicator BuiltInATR;
 
-        //[InputParameter("Ticks per Point for this Symbol")]
-        //public double TicksPerPoint = 4;
-
         [InputParameter("Calculate True Range (TR) in Ticks")]
         public bool TRinTicks = true;
 
         [InputParameter("Calculate ATR in Ticks")]
         public bool ATRinTicks = true;
 
-        [InputParameter("ATR Period")]
+        [InputParameter("ATR Period", minimum: 1, increment: 1)]
         public int ATR_Period = 14;
 
         [InputParameter("Print Current ATR on Chart")]
@@ -43,17 +43,17 @@ namespace ATR_TR
         [InputParameter("Print Current TR on Chart")]
         public bool printTRStringOnChart = true;
 
-        [InputParameter("Print ATR/TR x Offset from Top Right")]
+        [InputParameter("Print ATR/TR x Offset from Top Right", minimum: 0)]
         public int xOffset = 230;
 
-        [InputParameter("Print ATR/TR y Offset from Top Right")]
+        [InputParameter("Print ATR/TR y Offset from Top Right", minimum: 0)]
         public int yOffset = 10;
 
         [InputParameter("ATR/TR Font Color")]
         public Color atrFontColor = Color.LightGray;
 
-        [InputParameter("ATR/TR Font Size")]
-        public int atrFontSize = 10;
+        [InputParameter("ATR/TR Font Size", minimum: 6, maximum: 36)]
+        public int fontSize = 10;
 
         [InputParameter("Print Previous Bar TR on Chart")]
         public bool printPrevTRStringOnChart = true;
@@ -62,12 +62,11 @@ namespace ATR_TR
         [InputParameter("Print Risk Calculation")]
         public bool printRiskCalculation = true;
 
-        [InputParameter("Maximum Risk per Trade in $")]
-        public double maxRisk = 75.00;
+        [InputParameter("Maximum Risk per Trade in $", minimum: 0, maximum: 1000000, increment: 1, decimalPlaces: 0)]
+        public double maxRisk = 75;
 
-        [InputParameter("Select X. Risk = SignalBar + X Ticks")]
+        [InputParameter("Select X. Risk = SignalBar + X Ticks", minimum: 0)]
         public int riskAddTicks = 2;
-
 
         /// <summary>
         /// Indicator's constructor. Contains general information: name, description, LineSeries etc. 
@@ -209,10 +208,10 @@ namespace ATR_TR
             tr_str = tr_str.PadRight(padding);
 
 
-            // Output Text to print on Chart
+            // Create text to be printed on chart
             string str = "Bar Size".PadRight(padding);
             if (printRiskCalculation)
-                str += $"  Max Pos ${maxRisk}";
+                str += $"  Risk ${maxRisk}";
             str += "\n";
 
             if (printATRStringonChart) 
@@ -241,14 +240,13 @@ namespace ATR_TR
 
             //if (printRiskCalculation)
             //{
-            //    str += "\nMax Pos Size:\n";
+            //    str += $"\nRisk ${maxRisk}\n";
             //    str += "ATR: " + nbContractsATR.ToString("F1") + "\n";
             //    str += "Prev TR: " + nbContractsPrevTR.ToString("F1") + "\n";
             //    str += "Curr TR: " + nbContractsTR.ToString("F1") + "\n";
             //}
 
-
-            Font font = new Font("Consolas", atrFontSize, FontStyle.Regular);
+            Font font = new Font("Consolas", fontSize, FontStyle.Regular);
             int textXCoord = mainWindow.ClientRectangle.Width - xOffset;
             int textYCoord = yOffset; // mainWindow.ClientRectangle.Height - 100;
             Brush brush = new SolidBrush(atrFontColor);
