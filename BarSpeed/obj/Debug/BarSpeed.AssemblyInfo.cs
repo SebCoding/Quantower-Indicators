@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BarSpeed")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09517a2143309f76708957af333273d0448bd924")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+750be4f7beaa8942b2c01a703567e16034dddec8")]
 [assembly: System.Reflection.AssemblyProductAttribute("BarSpeed")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BarSpeed")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,6 +1,14 @@
-// Quantower Custom Indicator.
-//
-//
+//Quantower Custom Indicator.
+
+// BarSpeed indicator is used to display the bar speed in bars/min and min/bar
+// on tick charts and should be used in OnBarClose UpdateType only.
+
+// It calculates the average time per bar within the last X minutes (parameter: TimeSpan in Minutes).
+// Because the market is slower outside opening hours, you can have TimeSpan values, one
+// for each period (market open and market closed).
+// The time input as market open and closed do not need to correspond to that specifically,
+// but can be used to separate low/high volume market hours.
+
 // Indicator created by Sebastien Vezina.
 // Github User: SebCoding
 // September 2024
