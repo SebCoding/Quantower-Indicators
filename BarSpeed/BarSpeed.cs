@@ -25,28 +25,36 @@ namespace BarSpeed
     {
         private string outputText;
 
-        [InputParameter("Font Color")]
+        [InputParameter ("Font Color", sortIndex: 0)]
         public Color FontColor = Color.LightGray;
 
-        [InputParameter("Font Size", minimum: 6, maximum: 36)]
+        [InputParameter("Font Size", sortIndex:1, minimum: 6, maximum: 36)]
         public int FontSize = 10;
 
-        [InputParameter("Text Position: X Offset")]
+        [InputParameter("Text Location", sortIndex:2, variants: new object[]{
+            "TopLeft", TextLocation.TopLeft,
+            "TopRight", TextLocation.TopRight,
+            "BottomLeft", TextLocation.BottomLeft,
+            "BottomRight", TextLocation.BottomRight
+        })]
+        public TextLocation textLocation = TextLocation.BottomLeft;
+
+        [InputParameter("Text Pos. X Offset (+/- values)", sortIndex: 3)]
         public int xOffset = 15;
 
-        [InputParameter("Text Position: Y Offset")]
+        [InputParameter("Text Pos. Y Offset (+/- values)", sortIndex: 4)]
         public int yOffset = -60;
 
-        [InputParameter("Market Open Time")]
+        [InputParameter("Market Open Time", sortIndex: 5)]
         public DateTime MarketOpenTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 30, 0, DateTimeKind.Local);
 
-        [InputParameter("Market Close Time")]
+        [InputParameter("Market Close Time", sortIndex: 6)]
         public DateTime MarketCloseTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 17, 00, 0, DateTimeKind.Local);
 
-        [InputParameter("Time Span In Minutes (within opening hours)", minimum: 1, maximum: 500)]
+        [InputParameter("Time Span In Minutes (within opening hours)", sortIndex: 7, minimum: 1, maximum: 500)]
         public int TimeSpanInMin_Open = 10;
 
-        [InputParameter("Time Span In Minutes (outside opening hours)", minimum: 1, maximum: 500)]
+        [InputParameter("Time Span In Minutes (outside opening hours)", sortIndex: 8, minimum: 1, maximum: 500)]
         public int TimeSpanInMin_Closed = 60;
 
         //[InputParameter("Invert Opening Hours")]
@@ -223,16 +231,48 @@ namespace BarSpeed
             Brush brush = new SolidBrush(FontColor);
             Font font = new Font("Consolas", FontSize, FontStyle.Regular);
 
-            // For Top Right
-            //int textXCoord = mainWindow.ClientRectangle.Width - xOffset;
-            //int textYCoord = yOffset; 
-
-            // For Bottom Left
-            int textXCoord = xOffset;
-            int textYCoord = mainWindow.ClientRectangle.Height + yOffset;
+            int textCoordX = 0;
+            int textCoordY = 0;
+            switch (textLocation) 
+            {
+                case TextLocation.TopLeft:
+                    {
+                        textCoordX = xOffset;
+                        textCoordY = yOffset;
+                        break;
+                    }
+                case TextLocation.TopRight:
+                    {
+                        textCoordX = mainWindow.ClientRectangle.Width + xOffset;
+                        textCoordY = yOffset;
+                        break;
+                    }
+                case TextLocation.BottomRight:
+                    {
+                        textCoordX = mainWindow.ClientRectangle.Width + xOffset;
+                        textCoordY = mainWindow.ClientRectangle.Height + yOffset;
+                        break;
+                    }
+                case TextLocation.BottomLeft:
+                default:
+                    {
+                        textCoordX = xOffset;
+                        textCoordY = mainWindow.ClientRectangle.Height + yOffset;
+                        break;
+                    }
+            }
 
             // Drawing on Chart
-            graphics.DrawString(outputText, font, brush, textXCoord, textYCoord);
+            graphics.DrawString(outputText, font, brush, textCoordX, textCoordY);
         }
     }
+
+    public enum TextLocation
+    {
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
+    }
+        
 }

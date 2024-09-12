@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{B91C2422-2CAB-4A53-AAAC-B7EFA7DF7893}|BarSpeed\\BarSpeed.csproj|solutionrelative:barspeed\\barspeed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|K:\\_Trading\\Quantower\\Examples-master\\IndicatorExamples\\DoubleSMAIndicator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|K:\\_Trading\\Quantower\\Examples-master\\IndicatorExamples\\AverageDirectionalIndex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,14 +22,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DoubleSMAIndicator.cs",
-              "DocumentMoniker": "K:\\_Trading\\Quantower\\Examples-master\\IndicatorExamples\\DoubleSMAIndicator.cs",
-              "RelativeDocumentMoniker": "..\\Examples-master\\IndicatorExamples\\DoubleSMAIndicator.cs",
-              "ToolTip": "K:\\_Trading\\Quantower\\Examples-master\\IndicatorExamples\\DoubleSMAIndicator.cs",
-              "RelativeToolTip": "..\\Examples-master\\IndicatorExamples\\DoubleSMAIndicator.cs",
+              "Title": "AverageDirectionalIndex.cs",
+              "DocumentMoniker": "K:\\_Trading\\Quantower\\Examples-master\\IndicatorExamples\\AverageDirectionalIndex.cs",
+              "RelativeDocumentMoniker": "..\\Examples-master\\IndicatorExamples\\AverageDirectionalIndex.cs",
+              "ToolTip": "K:\\_Trading\\Quantower\\Examples-master\\IndicatorExamples\\AverageDirectionalIndex.cs",
+              "RelativeToolTip": "..\\Examples-master\\IndicatorExamples\\AverageDirectionalIndex.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-11T10:00:38.024Z",
+              "WhenOpened": "2024-09-12T04:38:02.87Z",
               "EditorCaption": ""
             },
             {
@@ -38,9 +38,9 @@
               "Title": "BarSpeed.cs",
               "DocumentMoniker": "K:\\_Trading\\Quantower\\Seb QT Indicators\\BarSpeed\\BarSpeed.cs",
               "RelativeDocumentMoniker": "BarSpeed\\BarSpeed.cs",
-              "ToolTip": "K:\\_Trading\\Quantower\\Seb QT Indicators\\BarSpeed\\BarSpeed.cs*",
-              "RelativeToolTip": "BarSpeed\\BarSpeed.cs*",
-              "ViewState": "AgIAACkAAAAAAAAAAAAQwFgAAAA3AAAAAAAAAA==",
+              "ToolTip": "K:\\_Trading\\Quantower\\Seb QT Indicators\\BarSpeed\\BarSpeed.cs",
+              "RelativeToolTip": "BarSpeed\\BarSpeed.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAACwAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-07T11:51:04.676Z",
               "EditorCaption": ""
