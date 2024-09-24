@@ -1,37 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "K:\\_Trading\\Quantower\\Seb QT Indicators\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{B91C2422-2CAB-4A53-AAAC-B7EFA7DF7893}|BarSpeed\\BarSpeed.csproj|k:\\_trading\\quantower\\seb qt indicators\\barspeed\\barspeed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B91C2422-2CAB-4A53-AAAC-B7EFA7DF7893}|BarSpeed\\BarSpeed.csproj|solutionrelative:barspeed\\barspeed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BarSpeed.cs",
-              "DocumentMoniker": "K:\\_Trading\\Quantower\\Seb QT Indicators\\BarSpeed\\BarSpeed.cs",
-              "RelativeDocumentMoniker": "BarSpeed\\BarSpeed.cs",
-              "ToolTip": "K:\\_Trading\\Quantower\\Seb QT Indicators\\BarSpeed\\BarSpeed.cs",
-              "RelativeToolTip": "BarSpeed\\BarSpeed.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAQwFEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T11:51:04.676Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

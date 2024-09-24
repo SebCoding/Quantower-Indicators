@@ -1,0 +1,23 @@
+K:\_Trading\Quantower\Nitro\Nitro\Settings\Scripts\Indicators\SebIndPack\ATR_TR.deps.json
+K:\_Trading\Quantower\Nitro\Nitro\Settings\Scripts\Indicators\SebIndPack\ATR_TR.dll
+K:\_Trading\Quantower\Nitro\Nitro\Settings\Scripts\Indicators\SebIndPack\ATR_TR.pdb
+K:\_Trading\Quantower\Seb QT Indicators\ATR_TR\obj\Debug\SebIndPack.csproj.AssemblyReference.cache
+K:\_Trading\Quantower\Seb QT Indicators\ATR_TR\obj\Debug\SebIndPack.GeneratedMSBuildEditorConfig.editorconfig
+K:\_Trading\Quantower\Seb QT Indicators\ATR_TR\obj\Debug\SebIndPack.AssemblyInfoInputs.cache
+K:\_Trading\Quantower\Seb QT Indicators\ATR_TR\obj\Debug\SebIndPack.AssemblyInfo.cs
+K:\_Trading\Quantower\Seb QT Indicators\ATR_TR\obj\Debug\SebIndPack.csproj.CoreCompileInputs.cache
+K:\_Trading\Quantower\Seb QT Indicators\ATR_TR\obj\Debug\SebIndPack.sourcelink.json
+K:\_Trading\Quantower\Seb QT Indicators\ATR_TR\obj\Debug\ATR_TR.dll
+K:\_Trading\Quantower\Seb QT Indicators\ATR_TR\obj\Debug\refint\ATR_TR.dll
+K:\_Trading\Quantower\Seb QT Indicators\ATR_TR\obj\Debug\ATR_TR.pdb
+K:\_Trading\Quantower\Seb QT Indicators\ATR_TR\obj\Debug\ref\ATR_TR.dll
+K:\_Trading\Quantower\Seb QT Indicators\SebIndPack\obj\Debug\SebIndPack.csproj.AssemblyReference.cache
+K:\_Trading\Quantower\Seb QT Indicators\SebIndPack\obj\Debug\SebIndPack.GeneratedMSBuildEditorConfig.editorconfig
+K:\_Trading\Quantower\Seb QT Indicators\SebIndPack\obj\Debug\SebIndPack.AssemblyInfoInputs.cache
+K:\_Trading\Quantower\Seb QT Indicators\SebIndPack\obj\Debug\SebIndPack.AssemblyInfo.cs
+K:\_Trading\Quantower\Seb QT Indicators\SebIndPack\obj\Debug\SebIndPack.csproj.CoreCompileInputs.cache
+K:\_Trading\Quantower\Seb QT Indicators\SebIndPack\obj\Debug\SebIndPack.sourcelink.json
+K:\_Trading\Quantower\Seb QT Indicators\SebIndPack\obj\Debug\ATR_TR.dll
+K:\_Trading\Quantower\Seb QT Indicators\SebIndPack\obj\Debug\refint\ATR_TR.dll
+K:\_Trading\Quantower\Seb QT Indicators\SebIndPack\obj\Debug\ATR_TR.pdb
+K:\_Trading\Quantower\Seb QT Indicators\SebIndPack\obj\Debug\ref\ATR_TR.dll

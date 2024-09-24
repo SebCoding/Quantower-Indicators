@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35201.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATR_TR", "ATR_TR\ATR_TR.csproj", "{5CC07CBD-39A1-47B8-B126-F9594FF39409}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SebIndPack", "SebIndPack\SebIndPack.csproj", "{5CC07CBD-39A1-47B8-B126-F9594FF39409}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarSpeed", "BarSpeed\BarSpeed.csproj", "{B91C2422-2CAB-4A53-AAAC-B7EFA7DF7893}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarSpeed", "BarSpeed\BarSpeed.csproj", "{B91C2422-2CAB-4A53-AAAC-B7EFA7DF7893}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATR_TR", "ATR_TR\ATR_TR.csproj", "{64043B7D-E2D7-4526-9D31-F14C2AC71C20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B91C2422-2CAB-4A53-AAAC-B7EFA7DF7893}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B91C2422-2CAB-4A53-AAAC-B7EFA7DF7893}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B91C2422-2CAB-4A53-AAAC-B7EFA7DF7893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64043B7D-E2D7-4526-9D31-F14C2AC71C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64043B7D-E2D7-4526-9D31-F14C2AC71C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64043B7D-E2D7-4526-9D31-F14C2AC71C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64043B7D-E2D7-4526-9D31-F14C2AC71C20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

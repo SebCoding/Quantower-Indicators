@@ -1,0 +1,12 @@
+K:\_Trading\Quantower\Nitro\Nitro\Settings\Scripts\Indicators\MyATR\MyATR.deps.json
+K:\_Trading\Quantower\Nitro\Nitro\Settings\Scripts\Indicators\MyATR\MyATR.dll
+K:\_Trading\Quantower\Nitro\Nitro\Settings\Scripts\Indicators\MyATR\MyATR.pdb
+K:\_Trading\Quantower\Seb QT Indicators\MyATR\obj\Debug\MyATR.csproj.AssemblyReference.cache
+K:\_Trading\Quantower\Seb QT Indicators\MyATR\obj\Debug\MyATR.GeneratedMSBuildEditorConfig.editorconfig
+K:\_Trading\Quantower\Seb QT Indicators\MyATR\obj\Debug\MyATR.AssemblyInfoInputs.cache
+K:\_Trading\Quantower\Seb QT Indicators\MyATR\obj\Debug\MyATR.AssemblyInfo.cs
+K:\_Trading\Quantower\Seb QT Indicators\MyATR\obj\Debug\MyATR.csproj.CoreCompileInputs.cache
+K:\_Trading\Quantower\Seb QT Indicators\MyATR\obj\Debug\MyATR.dll
+K:\_Trading\Quantower\Seb QT Indicators\MyATR\obj\Debug\refint\MyATR.dll
+K:\_Trading\Quantower\Seb QT Indicators\MyATR\obj\Debug\MyATR.pdb
+K:\_Trading\Quantower\Seb QT Indicators\MyATR\obj\Debug\ref\MyATR.dll

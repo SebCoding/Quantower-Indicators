@@ -1,0 +1,74 @@
+{
+  "format": 1,
+  "restore": {
+    "K:\\_Trading\\Quantower\\Seb QT Indicators\\ATR_TR\\ATR_TR.csproj": {}
+  },
+  "projects": {
+    "K:\\_Trading\\Quantower\\Seb QT Indicators\\ATR_TR\\ATR_TR.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "K:\\_Trading\\Quantower\\Seb QT Indicators\\ATR_TR\\ATR_TR.csproj",
+        "projectName": "ATR_TR",
+        "projectPath": "K:\\_Trading\\Quantower\\Seb QT Indicators\\ATR_TR\\ATR_TR.csproj",
+        "packagesPath": "C:\\Users\\Seb\\.nuget\\packages\\",
+        "outputPath": "K:\\_Trading\\Quantower\\Seb QT Indicators\\ATR_TR\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Seb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8",
+          "dependencies": {
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
